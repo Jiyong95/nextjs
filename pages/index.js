@@ -8,18 +8,18 @@ export default function Home({ results }) {
   const onClick = (id, title) => {
     // <Link> 안 쓰고 navigating 하는 방법. query 이용
     // 단점 : Home을 안거치고 Detail페이지로 이동하면 query에 정보가 담기지 않는다.
-    // router.push(`/movies/${id}`);
+    router.push(`/movies/${title}/${id}`);
 
     // 데이터도 보내는 방법.
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}` // 이게 없으면 url에  query 정보가 들어간다.
-    );
+    // router.push(
+    //   {
+    //     pathname: `/movies/${id}`,
+    //     query: {
+    //       title,
+    //     },
+    //   },
+    //   `/movies/${id}` // 이게 없으면 url에  query 정보가 들어간다.
+    // );
   };
 
   return (
@@ -33,15 +33,7 @@ export default function Home({ results }) {
         >
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
           {/* router.push랑 똑같은 방법 */}
-          <Link
-            href={{
-              pathname: `/movies/${movie.id}`,
-              query: {
-                title: movie.original_title,
-              },
-            }}
-            as={`/movies/${movie.id}`}
-          >
+          <Link href={`/movies/${movie.original_title}/${movie.id}`}>
             <a>{movie.original_title}</a>
           </Link>
         </div>
