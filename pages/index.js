@@ -6,7 +6,7 @@ export default function Home({ results }) {
       <Seo title="Home" />
       {results.map((movie) => (
         <div className="movie" key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
         </div>
       ))}
@@ -47,7 +47,8 @@ export async function getServerSideProps() {
   };
 }
 // data를 Server에서 받아와서 렌더링하기 때문에 {!results && <h4>Loading...</h4>} 실행될 일이 없어진다.
-// data를 다 받아온 후에 렌더링 하고 싶은 경우에 사용.
+// data를 다 받아온 후에(HTML태그도 안보인다.) 렌더링 하고 싶은 경우에 사용.
+// 안쓰면 data부분을 제외한 HTML이 보여지고 data가 받아와지기 전까지 해당 부분은 안보임.
 
 /*
 _app.js
